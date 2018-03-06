@@ -42,7 +42,7 @@ export class UnlessDirective {
  * 
  * So we need to get access to the template (templRef:TemplateRef) and 
  * also to place in HTML where to render it (private vcRef: ViewContainerRef)
- * This will be done through denpency injection.
+ * This will be done through dependency injection.
  */
   constructor(private templRef:TemplateRef<any>, private vcRef: ViewContainerRef) {
 

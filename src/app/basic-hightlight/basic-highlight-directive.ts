@@ -13,7 +13,7 @@ export class BasicHighLightDirective implements OnInit  {
     /* *
      * Directive has only ngOnInit() and ngDestoy Lifecycle Hooks, BUT
      * it doesn't have other Lifecycle Hooks such as: DoCheck,AfterView, AfterContent 
-     * because it's a component (no template or view)
+     * because the directive it is unlike component it has no template nor a view to render!
      */    
    ngOnInit(){
         /* *
