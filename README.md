@@ -5,7 +5,7 @@
 ## There two kind of *directives*:
 
 >  - 'Attribute' directives : they set on element like an 'attribute' and they never destroy or alter the structure of the element in the DOM, they only change (properties) the appearance or behavior of a DOM element. (e.g. background-color) ...[more info](https://angular.io/guide/attribute-directives)
->  - 'Structural' directive : they also set on element like an 'attribute' and also change the of the DOM around this element, typically by adding, removing, or manipulating that elements, think about *ngFor/*ngIf for instance, they have a leading '*'..[more info](https://angular.io/guide/structural-directives)
+>  - 'Structural' directive : they also set on element like an 'attribute' and they can change the DOM around this element, typically by adding, removing, or manipulating that elements or nesting elements, think about *ngFor/*ngIf for instance, they have a leading '*'..[more info](https://angular.io/guide/structural-directives)
 >
 >
 >
