@@ -27,6 +27,6 @@
 
 * * *
 
-######* You may also need to run the following (i.e bootstrap package has been removed from angular newer versions!):*
+##### *You may also need to run the following (i.e bootstrap package has been removed from angular newer versions!):*
 
 `npm install bootstrap@3.3.7`
