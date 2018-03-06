@@ -1,27 +1,32 @@
-# Directives
+# *Directives* in Angular 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
-## Development server
+## This example allows us to dive deeper on how to use *directives* in Angular, and use not only built-in directives but also the custom one!
+## There two kind of *directives*:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+>  - 'Attribute' directives : they set on element like attribute and they never destroy or alter the structure of the element in the DOM, they only change (properties) the appearance or behavior of a DOM element. (e.g. background-color) ...[more info](https://angular.io/guide/attribute-directives)
+>  - 'Structural' directive : they set on element like attribute and also change the of the DOM around this element, typically by adding, removing, or manipulating that elements, think about *ngFor/*ngIf for instance, they have a leading '*'..[more info](https://angular.io/guide/structural-directives)
+>
+>
+>
+> *Note* : ++For each case a further explanation is provided inside the code++ 
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- - -
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Usage:
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+1. `npm install`
+2. `ng serve`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+- - -
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* * *
+
+######* You may also need to run the following (i.e bootstrap package has been removed from angular newer versions!):*
+
+`npm install bootstrap@3.3.7`
