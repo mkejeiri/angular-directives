@@ -9,7 +9,7 @@
 >
 >
 >
-> *Note* : ++ For each case a further explanation is provided inside the code ++ 
+> *Note* : For each case a further explanation is provided inside the code 
 
 
 - - -
