@@ -26,11 +26,24 @@
             {{number}}
         </li> 
                 
-        <!-- when it comes to *ngIf angular work with template behind the scenes
-        [ngIf]="!onlyOdd" becomes a binding property  -->
+        <!--    
+                    ***********************************  
+                     How *ngIf="!onlyOdd" really work ?
+                    ***********************************          
+            The '*' is not an operator or something used in the angular syntax when using 
+            directive or property binding, in angular there is only :  
+            1- property binding
+            2- event binding 
+            3- two ways binding 
+            4- string interpolation
+
+            it is just a way of telling angular this is a structural directive, do
+            your magic trick and create a <ng-template [ngIf]="!onlyOdd"> behind 
+            the scene using a property binding [ngIf]="!onlyOdd"
+            See the transformation here after:
+        -->
         <ng-template [ngIf]="!onlyOdd">
-            <h1>showing template...</h1>
-            <h4>[ngIf]="!onlyOdd"</h4>
+            <h1>showing template...</h1>           
             <div >
                 <li class="list-group-item" *ngFor="let even of evenNumber"
                 [ngClass]="{even:even % 2 == 0}">
@@ -39,7 +52,9 @@
             </div> 
         </ng-template>
 
-        <!-- Creating our own directive which do the opposite of if -->
+        <!-- 
+            Creating our own directive which do the opposite of if 
+        -->
         <div *appUnless ="onlyOdd" >
           <h4>Using Unless directive for onlyOdd</h4>
             <li class="list-group-item" *ngFor="let odd of oddNumber"
@@ -59,13 +74,28 @@
         
       </ul>
       <p appBasicHighlight>Style me with a basic directive</p>
-      <!-- <p appBetterHighlight [defaultColor]="'yellow'" [highLightColor]="'red'">Style me with a better directive 1 </p> -->
       
-      <!-- highLightColor has an alias name after appBetterHighlight directive, that why we use close bracket -->
-      <p [appBetterHighlight]="'red'" defaultColor="yellow" >Style me with a better directive</p>
+      
+      <!-- 
+          
+                CUSTOM property binding:
+          Note that a 'highLightColor' property has an alias named after appBetterHighlight 
+          directive, that why we use close bracket, to indicate that it's property and also a directive 
+          in one shot!, this will allow us to assign a highLightColor to the HTML element ('p'), i.e
+          to overwrite the highLightColor set initially in ts as 'blue' 
+
+                        Dynamic setting color for directive
+          <p appBetterHighlight [defaultColor]="'yellow'" [highLightColor]="'red'">Style me with a better directive </p>
+      -->
+      <p [appBetterHighlight]="'red'" [defaultColor]="'yellow'" >Style me with a better directive 2</p>
+      
 
       <h1>ngswitch</h1>
           <div [ngSwitch]="value">
+              <!-- 
+                angular will transform behind the scenes *ngSwitchCase="5" 
+                to <ng-template [ngSwitchCase]="5"><p>value is 5</p></ng-template>  
+                -->
             <p *ngSwitchCase="5">value is 5</p>
             <p *ngSwitchCase="10">value is 10</p>
             <p *ngSwitchCase="100">value is 100</p>

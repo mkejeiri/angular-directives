@@ -2,7 +2,6 @@ import { Directive,
   Renderer2,
    OnInit,
    ElementRef, 
-   RendererStyleFlags2,
    HostListener,
    HostBinding,
    Input} from '@angular/core';
@@ -12,34 +11,69 @@ import { Directive,
 })
 export class BetterHighlightDirective implements OnInit {
   @Input() defaultColor:string = 'transparent';
+  /**
+   * we use the alias name after the directive appBetterHighlight so we can
+   * bind the HTML element to the directive and also use it to access the highLightColor
+   * property from template in one single shoot'
+   */
   @Input("appBetterHighlight") highLightColor:string = 'blue';
 
-  //backgroundColor : DOM property doesn't know dashes...
-  //style.backgroundColor : is DOM property inside the style.
-  @HostBinding('style.backgroundColor')  backgroundColor: string = this.defaultColor; //intial value, to avoid err
+  
   
   constructor(private elRef:ElementRef, private renderer:Renderer2) {}
 
-  //this is a better approach because we use the 'renderer':
-  //Angular not limited to run in the browser, it could work in an ENV without accessing the DOM
-  //such as the case when we work with sercice worker, in such ENV you might not have access to the DOM 
-  //to change it. So it's still better pratice to use this approach and to use the methodes provided by the
-  //renderer to access the DOM.
+  /**
+   * using a 'renderer'to access the DOM is usually the best pratice, because:
+   * Angular is not limited to run in the browser, it could work in an ENV without accessing the DOM!
+   * such as the case with service workers, to change DOM through property such as  
+   *  elementRef.nativeElement might be very dangerous!!! 
+   */
   ngOnInit(){
     //this.renderer.setStyle(this.elRef.nativeElement,'background-color','blue');
     this.backgroundColor= this.defaultColor
   }
 
-  //option 1 : to not use the renderer
-  ///@HostListener('DOM event') methodName (eventData:Event)
+  
+
+  /**
+   * Those events are trigger on the element where this directive set on 
+   * @HostListener('DOM event') methodName (eventData:Event)
+   */
   @HostListener('mouseenter') mouseover(eventData :Event){
     // this.renderer.setStyle(this.elRef.nativeElement,'background-color','blue');
-    this.backgroundColor =this.highLightColor;
+    this.backgroundColor = this.highLightColor;
   }
 
   @HostListener('mouseleave') mouseleave(eventData :Event){
     // this.renderer.setStyle(this.elRef.nativeElement,'background-color','transparent');
     this.backgroundColor =this.defaultColor;
   }
+
+/**
+ * Another alternative approach to 'renderer' is to use the HostBinding decorator to bind to 
+ * hostPropertyName, here we use for style attributes:
+ * Note that we use: 
+ *        backgroundColor : because DOM property doesn't know dashes (background-color)...
+ *        style.backgroundColor : hostPropertyName in is the 'style', but we accessing 
+ *                                the subproperty of the style!
+ * 
+ * --------------------------------------------------------------------------------------------
+ *                            S O M E     E X A M P L E S
+ * --------------------------------------------------------------------------------------------
+                          @HostBinding('style.color') color: string;
+                          @HostBinding('style.border-color') borderColor: string;
+                          @HostListener('keydown') newColor() {
+                          //doSomething
+                          }
+
+                          isActive:boolean;
+                          @HostBinding('class.isActive') isActiveAsMethod(){
+                            return this.isActive;
+                          };
+ *
+ *                         
+ * Here we get access to style property and then background-color subproperty
+ */  
+  @HostBinding('style.backgroundColor') backgroundColor: string = this.defaultColor; //intial value, to avoid err
 }
  
