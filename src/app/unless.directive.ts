@@ -41,7 +41,7 @@ export class UnlessDirective {
  * the same as if we use the star *: <div *appUnless ="onlyOdd">...</div>
  * 
  * So we need to get access to the template (templRef:TemplateRef) and 
- * also to place in HTML where to render it (private vcRef: ViewContainerRef)
+ * also to the placeholder in HTML where to render it (private vcRef: ViewContainerRef)
  * This will be done through dependency injection.
  */
   constructor(private templRef:TemplateRef<any>, private vcRef: ViewContainerRef) {
