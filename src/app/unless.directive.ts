@@ -27,7 +27,10 @@ export class UnlessDirective {
 // @Input() set appUnless (condition:boolean) //or the next one:
  @Input('appUnless') set Unless (condition:boolean){
   if (!condition) {
-    //we create a template in place holder
+    //we create a template this.templRef in placeholder this.vcRef
+    //we get those references through DI; so the directive knows 
+    //where in the appComponent to place the <ng-template [appUnless]="onlyOdd">...</ng-template> 
+    //in the placeholder where it set on when the onlyOdd is true.
     this.vcRef.createEmbeddedView(this.templRef);
   }else{
     //we clear everything (template) from the placeholder
